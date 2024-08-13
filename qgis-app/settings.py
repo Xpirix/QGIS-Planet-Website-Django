@@ -80,7 +80,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     # Needed by rpc4django
-    "plugins.middleware.HttpAuthMiddleware",
+    "middleware.HttpAuthMiddleware",
     "django.contrib.auth.middleware.RemoteUserMiddleware",
     "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     # Added by Tim for advanced loggin options
@@ -115,8 +115,6 @@ INSTALLED_APPS = [
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     "django.contrib.staticfiles",
-    # ABP:
-    "plugins",
     #'pagination',
     "django.contrib.humanize",
     #'django.contrib.markup',
@@ -125,7 +123,6 @@ INSTALLED_APPS = [
     "taggit",
     "taggit_autosuggest",
     "taggit_templatetags",
-    "haystack",
     "django.contrib.flatpages",
     "simplemenu",
     "tinymce",
@@ -160,8 +157,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     "rest_framework_gis",
     "preferences",
-    # styles:
-    "styles",
     "matomo"
 ]
 
@@ -188,22 +183,6 @@ ACCOUNT_ACTIVATION_DAYS = (
 )
 
 LOGIN_REDIRECT_URL = "/"
-
-# Added by Tim for snippets (and possibly other site search support)
-# HAYSTACK_SITECONF = 'search_sites'
-# django.core.exceptions.ImproperlyConfigured: The HAYSTACK_SITECONF setting is no longer used & can be removed.
-HAYSTACK_CONNECTIONS = {"default": "whoosh"}
-HAYSTACK_WHOOSH_PATH = SITE_ROOT + "/search-index"
-
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
-        "PATH": os.path.join(os.path.dirname(__file__), "whoosh_index"),
-    },
-}
-
-# Migration: see http://django-haystack.readthedocs.org/en/latest/migration_from_1_to_2.html#removal-of-realtimesearchindex
-HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
 
 # Added by Tim for database based caching
 # See http://docs.djangoproject.com/en/dev/topics/cache/

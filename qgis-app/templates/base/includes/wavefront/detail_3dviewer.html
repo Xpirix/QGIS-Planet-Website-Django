@@ -1,4 +1,4 @@
-{% load i18n static thumbnail resources_custom_tags %}
+{% load i18n static thumbnail  %}
 <div class="middle">
   {% thumbnail object_detail.thumbnail_image "150x150" format="PNG" as im %}
   <img alt="{% trans "image" %}" src="{% static 'wavefront/img/cube-3d.png' %}" width="{{ im.x }}" height="{{ im.y }}" />

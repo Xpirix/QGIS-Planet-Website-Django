@@ -1,7 +1,7 @@
 # Docker compose commands Documentation
 
 ## Overview
-This doc is designed for managing a Docker-based project with the ID `qgis-plugins`. It includes various commands for building, running, and maintaining both production and development environments. Below is a detailed description of each command available in the Makefile.
+This doc is designed for managing a Docker-based project with the ID `qgis-planet`. It includes various commands for building, running, and maintaining both production and development environments. Below is a detailed description of each command available in the Makefile.
 
 ## Commands
 
@@ -100,11 +100,6 @@ make wait-db
 - **create-test-db:** Creates a test database with PostGIS extension.
 ```sh
 make create-test-db
-```
-
-- **rebuild_index:** Rebuilds the search index for the Django application.
-```sh
-make rebuild_index
 ```
 
 - **uwsgi-shell:** Opens a shell in the `uwsgi` container.

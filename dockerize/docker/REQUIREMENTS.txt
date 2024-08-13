@@ -7,7 +7,6 @@ psycopg2-binary~=2.9
 # Updates for Django 2
 git+https://github.com/metamatik/django-templatetag-sugar.git
 # Updates for Django 4
-git+https://github.com/Xpirix/django-ratings.git@modernize
 django-taggit-autosuggest~=0.4
 django-annoying~=0.10
 
@@ -23,8 +22,6 @@ django-sortable-listview~=0.43
 sorl-thumbnail~=12.10
 django-extensions~=3.2
 django-debug-toolbar~=4.2
-whoosh~=2.7
-django-haystack~=3.2
 
 # Feedjack==0.9.18
 # So use George's fork rather
@@ -55,7 +52,6 @@ drf-yasg~=1.21
 django-rest-multiple-models==2.1.3
 
 django-preferences==1.0.0
-PyWavefront==1.3.3
 geoip2==4.5.0
 django-matomo==0.1.6
 uwsgi~=2.0

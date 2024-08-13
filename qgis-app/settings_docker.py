@@ -53,19 +53,15 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     # full text search postgres
     "django.contrib.postgres",
-    # ABP:
-    "plugins",
     "django.contrib.humanize",
     "django.contrib.syndication",
     "bootstrap_pagination",
     "sortable_listview",
     "lib",  # Container for small tags and functions
     "sorl.thumbnail",
-    "djangoratings",
     "taggit",
     "taggit_autosuggest",
     "taggit_templatetags",
-    "haystack",
     "simplemenu",
     "tinymce",
     "rpc4django",
@@ -78,17 +74,8 @@ INSTALLED_APPS = [
     "sorl_thumbnail_serializer",  # serialize image
     "drf_multiple_model",
     "drf_yasg",
-    "api",
-    # styles:
-    "styles",
-    # geopackages
-    "geopackages",
-    # QGIS Layer Definition File (.qlr)
-    "layerdefinitions",
-    # models (sharing .model3 file feature)
-    "models",
-    "wavefronts",
-    "matomo"
+    "matomo",
+    "utils"
 ]
 
 DATABASES = {
@@ -109,7 +96,7 @@ PAGINATION_DEFAULT_PAGINATION = 20
 PAGINATION_DEFAULT_PAGINATION_HUB = 30
 LOGIN_REDIRECT_URL = "/"
 SERVE_STATIC_MEDIA = DEBUG
-DEFAULT_PLUGINS_SITE = os.environ.get("DEFAULT_PLUGINS_SITE", "https://plugins.qgis.org/")
+DEFAULT_PLANET_SITE = os.environ.get("DEFAULT_PLANET_SITE", "https://planet.qgis.org/")
 
 # See fig.yml file for postfix container definition
 #
@@ -125,7 +112,7 @@ EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "25"))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "automation")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "docker")
 EMAIL_USE_TLS = ast.literal_eval(os.environ.get("EMAIL_USE_TLS", "False"))
-EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", "[QGIS Plugins]")
+EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", "[QGIS Planet]")
 
 # django uploaded file permission
 FILE_UPLOAD_PERMISSIONS = 0o644
@@ -142,27 +129,9 @@ METABASE_DOWNLOAD_STATS_URL = os.environ.get(
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_BROKER_URL = os.environ.get('BROKER_URL', 'amqp://rabbitmq:5672')
 CELERY_BEAT_SCHEDULE = {
-    'generate_plugins_xml': {
-        'task': 'plugins.tasks.generate_plugins_xml.generate_plugins_xml',
-        'schedule': crontab(minute='*/10'),  # Execute every 10 minutes.
-        'kwargs': {
-            'site': DEFAULT_PLUGINS_SITE
-        }
-    },
     'update_feedjack': {
-        'task': 'plugins.tasks.update_feedjack.update_feedjack',
+        'task': 'tasks.update_feedjack.update_feedjack',
         'schedule': crontab(minute='*/30'),  # Execute every 30 minutes.
-    },
-    'update_qgis_versions': {
-        'task': 'plugins.tasks.update_qgis_versions.update_qgis_versions',
-        'schedule': crontab(minute='*/30'),  # Execute every 30 minutes.
-    },
-    # Index synchronization sometimes fails when deleting
-    # a plugin and None is listed in the search list. So I think
-    # it would be better if we rebuild the index frequently
-    'rebuild_search_index': {
-        'task': 'plugins.tasks.rebuild_search_index.rebuild_search_index',
-        'schedule': crontab(minute=0, hour=3),  # Execute every day at 3 AM.
     }
 }
 # Set plugin token access and refresh validity to a very long duration

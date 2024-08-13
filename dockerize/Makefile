@@ -1,4 +1,4 @@
-PROJECT_ID := qgis-plugins
+PROJECT_ID := qgis-planet
 
 SHELL := /bin/bash
 
