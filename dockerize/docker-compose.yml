@@ -43,7 +43,6 @@ services:
       - ENABLE_LDAP=${ENABLE_LDAP:-False}
       - RABBITMQ_HOST=${RABBITMQ_HOST:-rabbitmq}
       - BROKER_URL=amqp://rabbitmq:5672
-      - METABASE_DOWNLOAD_STATS_URL=${METABASE_DOWNLOAD_STATS_URL:-/metabase}
       - EMAIL_BACKEND=${EMAIL_BACKEND}
       - EMAIL_HOST=${EMAIL_HOST}
       - EMAIL_PORT=${EMAIL_PORT}
@@ -148,7 +147,6 @@ services:
       - ./certbot-etc:/etc/letsencrypt
     depends_on:
       - uwsgi
-      - metabase
     logging:
       driver: "json-file"
       options:
@@ -177,18 +175,6 @@ services:
       - POSTGRES_HOST=${DATABASE_HOST:-db}
       - PGDATABASE=${DATABASE_NAME:-gis}
     restart: unless-stopped
-    networks:
-      internal:
-
-  metabase:
-    image: metabase/metabase:latest
-    environment:
-      - MB_DB_TYPE=postgres
-      - MB_DB_CONNECTION_URI=jdbc:postgresql://${DATABASE_HOST:-db}:5432/metabase?user=${DATABASE_USERNAME:-docker}&password=${DATABASE_PASSWORD:-docker}
-    depends_on:
-      - db
-    expose:
-      - "3000"
     networks:
       internal:
 

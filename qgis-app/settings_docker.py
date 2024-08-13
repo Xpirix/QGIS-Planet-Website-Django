@@ -104,12 +104,6 @@ EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", "[QGIS Planet]")
 # django uploaded file permission
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-
-GEOIP_PATH='/var/opt/maxmind/'
-METABASE_DOWNLOAD_STATS_URL = os.environ.get(
-    "METABASE_DOWNLOAD_STATS_URL", 
-    "/metabase"
-)
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_BROKER_URL = os.environ.get('BROKER_URL', 'amqp://rabbitmq:5672')
 CELERY_BEAT_SCHEDULE = {

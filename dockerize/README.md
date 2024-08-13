@@ -27,11 +27,6 @@ make build
 make db
 ```
 
-- **metabase**: Starts the Metabase container after ensuring the database is running.
-```sh
-make metabase
-```
-
 - **web**: Starts the web container and scales the `uwsgi` service to 2 instances.
 ```sh
 make web

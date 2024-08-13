@@ -37,7 +37,6 @@ requests~=2.31
 markdown~=3.5
 
 django-preferences==1.0.0
-geoip2==4.5.0
 django-matomo==0.1.6
 uwsgi~=2.0
 freezegun~=1.4
