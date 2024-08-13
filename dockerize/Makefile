@@ -1,4 +1,4 @@
-PROJECT_ID := qgis-plugins
+PROJECT_ID := qgis-planet
 
 SHELL := /bin/bash
 
@@ -23,12 +23,6 @@ db:
 	@echo "------------------------------------------------------------------"
 	@docker compose -p $(PROJECT_ID) up -d db
 
-metabase: db
-	@echo
-	@echo "------------------------------------------------------------------"
-	@echo "Running metabase in production mode"
-	@echo "------------------------------------------------------------------"
-	@docker compose -p $(PROJECT_ID) up -d metabase
 
 web: db
 	@echo
@@ -110,15 +104,12 @@ dbrestore:
 	@# - prefix causes command to continue even if it fails
 	@echo "stopping uwsgi container"
 	@docker compose -p $(PROJECT_ID) stop uwsgi
-	@echo "Dropping the gis and metabase databases"
+	@echo "Dropping the gis database"
 	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "dropdb --force gis"
-	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "dropdb --force metabase"
-	@echo "Creating the gis and metabase databases"
+	@echo "Creating the gis database"
 	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "createdb -O docker -T template1 gis"
-	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "createdb -O docker -T template1 metabase"
 	@echo "Restore database from backups/latest-gis.dmp"
 	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "pg_restore -c /backups/latest-gis.dmp -d gis"
-	-@docker compose -p $(PROJECT_ID) exec db su - postgres -c "pg_restore -c /backups/latest-metabase.dmp -d metabase"
 	@echo "starting uwsgi container"
 	@docker compose -p $(PROJECT_ID) up -d uwsgi
 

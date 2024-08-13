@@ -1,5 +1,5 @@
-{% load i18n simplemenu_tags static %}
-{% load resources_custom_tags %}
+{% load i18n static %}
+{% load custom_tags %}
 {% load matomo_tags %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -53,35 +53,18 @@
                            data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" style="float: right !important"><i class="icon-user icon-3x"></i></a>
                         {% endif %}
 
-                    <form class="navbar-search" action="{% url "haystack_search" %}" method="get">
-                      <input type="text"  id="id_q" name="q" class="search-query" placeholder="Search" />
-                      <button type="submit" class="btn btn-search"><i class="icon-search" aria-hidden="true"></i></button>
-                    </form>
-
-                    {% get_namedmenu Navigation as menu %}
                      <div class="nav-collapse collapse" style="height: 0px;">
                         <ul class="unstyled nav main-menu">
-                        {% for item in menu %}
-                            <li><a href="{{ item.page.url }}">{{ item.name }}</a></li>
-                        {% endfor %}
 
-                    {% get_namedmenu Hub as Hub %}
-                            <li class="dropdown">
-                              <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="#">Hub<b class="caret"></b></a>
-                              <ul id="sharingAppMenu" class="dropdown-menu" role="menu" aria-labelledby="drop4">
-                                {% for item in Hub %}
-                                  <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ item.page.url }}">{{ item.name }}</a></li>
-                                {% endfor %}
-                              </ul>
-                            </li>
 
-                            {% if user.is_authenticated %}
-                            <li><a href="{% url "logout" %}">{% trans "Logout" %}</a></li>
-                            {% else %}
-                            <li><a href="{% url "login" %}">{% trans "Login" %}</a></li>
-                            {% endif %}
-                            {% block navigation_extra %}
-                            {% endblock %}
+                        <li><a href="/">{% trans "Planet" %}</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url "logout" %}">{% trans "Logout" %}</a></li>
+                        {% else %}
+                        <li><a href="{% url "login" %}">{% trans "Login" %}</a></li>
+                        {% endif %}
+                        {% block navigation_extra %}
+                        {% endblock %}
 
 
                         </ul>
@@ -162,7 +145,7 @@
                   <ul class="unstyled inline" id="social">
                     <li id="twitter"><a href="https://twitter.com/qgis" class="external"><div></div></a></li>
                     <li id="facebook"><a href="https://www.facebook.com/QGIS-298112000235096" class="external"><div></div></a></li>
-                    <li id="github"><a href="https://github.com/qgis/QGIS-Django" class="external"><div></div></a></li>
+                    <li id="github"><a href="https://github.com/qgis/QGIS-Planet-Website" class="external"><div></div></a></li>
                   </ul>
                 </div>
 

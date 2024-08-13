@@ -2,10 +2,10 @@
 
 ## Development Environment
 
-- Clone git repo `git clone https://github.com/qgis/QGIS-Django.git`
+- Clone git repo `git clone https://github.com/qgis/QGIS-Planet-Website.git`
 - Run `$ pwd` in order to get your current directory
-- Path to your repo should be `<your current directory>/QGIS-Django `
-- Go to dockerize directory `cd QGIS-Django/dockerize`
+- Path to your repo should be `<your current directory>/QGIS-Planet-Website `
+- Go to dockerize directory `cd QGIS-Planet-Website/dockerize`
 
 - Build and spin container
 ```bash
@@ -36,15 +36,6 @@ $ make devweb-runserver
 ```
 and now, you can see your site at `http://0.0.0.0:62202` (skip this step if you are using PyCharm interpreter)
 
-- If 'None' appears in the search results, it indicates a misalignment between the search index and the database. This discrepancy often arises when a plugin is deleted from the model but persists in the search index. To rectify this issue, it is essential to synchronize the search index with the database by rebuilding it. Execute the following command to initiate the rebuilding process:
-
-```bash
-$ make rebuild_index
-```
-This command ensures that the search index accurately reflects the current state of the database, resolving the presence of 'None' in the search results. Automatic synchronization is currently managed in settings.py: `HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"`.
-
-For more information about make commands, please see the full docs [here](./dockerize/README.md).
-
 ## Production Environment
 For the production environment, please see the the private repo of the System Administration Documentation.
 
@@ -65,7 +56,7 @@ pre-commit install --config .pre-commit-config.yaml
 
 ### Setting up a remote interpreter in PyCharm
 
-- PyCharm -> Preferences -> Project: QGIS-Django
+- PyCharm -> Preferences -> Project: QGIS-Planet-Website
 - Click on the gear icon next to project interpreter -> add
 - SSH Interpreter -> New server configuration
 - Host : `localhost`
@@ -116,7 +107,7 @@ Now set these options:
   filesystem and the filesystem in the remote (docker) host. Click the ellipsis
   and add a run that points to your git checkout on your local host and the
   /home/web directory in the docker host. e.g.
-  * **Local path:** <path to your git repo>/QGIS-Django/qgis-app
+  * **Local path:** <path to your git repo>/QGIS-Planet-Website/qgis-app
   * **Remote path:** /home/web/django_project
 * click OK to save your run configuration
 
@@ -165,31 +156,31 @@ backups
 ├── 2019
 ├── 2020
 │   ├── April
-│   │   └── PG_QGIS_PLUGINS_gis.07-April-2020.dmp
+│   │   └── PG_QGIS_PLANET_gis.07-April-2020.dmp
 │   ├── August
 │   ├── December
-│   │   ├── PG_QGIS_PLUGINS_gis.01-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.02-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.03-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.04-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.05-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.06-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.07-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.08-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.09-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.10-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.11-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.12-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.13-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.14-December-2020.dmp
-│   │   ├── PG_QGIS_PLUGINS_gis.15-December-2020.dmp
-│   │   └── PG_QGIS_PLUGINS_gis.16-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.01-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.02-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.03-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.04-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.05-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.06-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.07-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.08-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.09-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.10-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.11-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.12-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.13-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.14-December-2020.dmp
+│   │   ├── PG_QGIS_PLANET_gis.15-December-2020.dmp
+│   │   └── PG_QGIS_PLANET_gis.16-December-2020.dmp
 │`
 ```
 
 - Copy the dump file you wish to restore to dockerize/backups/latest.dmp file
 ```bash
-$ cp backups/2020/December/PG_QGIS_PLUGINS_gis.16-December-2020.dmp dockerize/backups/latest.dmp
+$ cp backups/2020/December/PG_QGIS_PLANET_gis.16-December-2020.dmp dockerize/backups/latest.dmp
 ```
 
 - Restore the dump file
