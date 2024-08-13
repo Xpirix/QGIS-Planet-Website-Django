@@ -57,23 +57,12 @@ INSTALLED_APPS = [
     "bootstrap_pagination",
     "sortable_listview",
     "lib",  # Container for small tags and functions
-    "sorl.thumbnail",
-    "taggit",
-    "taggit_autosuggest",
-    "taggit_templatetags",
     "tinymce",
     "rpc4django",
     "feedjack",
     "preferences",
-    "rest_framework",
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
-    "sorl_thumbnail_serializer",  # serialize image
-    "drf_multiple_model",
-    "drf_yasg",
     "matomo",
-    "utils"
+    "planet"
 ]
 
 DATABASES = {
@@ -115,9 +104,6 @@ EMAIL_SUBJECT_PREFIX = os.environ.get("EMAIL_SUBJECT_PREFIX", "[QGIS Planet]")
 # django uploaded file permission
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-REST_FRAMEWORK = {
-    "TEST_REQUEST_DEFAULT_FORMAT": "json",
-}
 
 GEOIP_PATH='/var/opt/maxmind/'
 METABASE_DOWNLOAD_STATS_URL = os.environ.get(
@@ -128,7 +114,7 @@ CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_BROKER_URL = os.environ.get('BROKER_URL', 'amqp://rabbitmq:5672')
 CELERY_BEAT_SCHEDULE = {
     'update_feedjack': {
-        'task': 'tasks.update_feedjack.update_feedjack',
+        'task': 'planet.tasks.update_feedjack.update_feedjack',
         'schedule': crontab(minute='*/30'),  # Execute every 30 minutes.
     }
 }

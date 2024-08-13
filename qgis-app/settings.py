@@ -118,28 +118,17 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     #'django.contrib.markup',
     "django.contrib.syndication",
-    #'ratings',
-    "taggit",
-    "taggit_autosuggest",
-    "taggit_templatetags",
     "tinymce",
     # Tim for django snippets app support
     #'cab', #the django snippets app itself
     "debug_toolbar",
     # Tim for command extensions so we can run feedjack cron using python manage.py runscript
     "django_extensions",
-    # Sam for Users map
-    #'django.contrib.gis',
-    #'users',
-    "olwidget",
     # Tim for blog planet / feed aggregator
     "feedjack",
-    # For users app thumbs
-    "sorl.thumbnail",
     # RPC
     "rpc4django",
     #'south',
-    "djangoratings",
     "lib",
     "endless_pagination",
     "userexport",
@@ -148,11 +137,6 @@ INSTALLED_APPS = [
     "user_map",
     "leaflet",
     "bootstrapform",
-    "rest_framework",
-    'rest_framework.authtoken',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
-    "rest_framework_gis",
     "preferences",
     "matomo"
 ]
