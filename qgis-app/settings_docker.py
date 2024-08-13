@@ -7,8 +7,6 @@ import os
 from settings import *
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-from datetime import timedelta
-from django.contrib.staticfiles.storage import ManifestStaticFilesStorage
 
 DEBUG = ast.literal_eval(os.environ.get("DEBUG", "True"))
 THUMBNAIL_DEBUG = DEBUG
@@ -111,11 +109,6 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'planet.tasks.update_feedjack.update_feedjack',
         'schedule': crontab(minute='*/30'),  # Execute every 30 minutes.
     }
-}
-# Set plugin token access and refresh validity to a very long duration
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=365*1000),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=365*1000)
 }
 
 MATOMO_SITE_ID="1"

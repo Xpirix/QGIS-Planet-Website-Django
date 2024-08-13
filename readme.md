@@ -1,9 +1,8 @@
 # Introduction
 
-![image](https://user-images.githubusercontent.com/178003/91536115-2356ec80-e90c-11ea-971b-f23ac72d3aea.png)
+![image](./img/Planet_website.png)
 
-This directory contains the source code for the plugin repository server used by
-the QGIS project.
+This directory contains the source code for the planet website.
 
 This software is open source and licensed under GNU General Public License v2.0.
 For licensing information, please read the COPYING file included in this directory.
