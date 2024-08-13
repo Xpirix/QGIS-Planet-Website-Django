@@ -14,8 +14,6 @@ urlpatterns = [
     # url(r'^planet/feed/$', RedirectView.as_view(url='/planet/feed/atom/')),
     # Tim: Feedjack feed aggregator / 
     url("", include("feedjack.urls"), name="planet"),
-    # ABP: autosuggest for tags
-    url(r"^taggit_autosuggest/", include("taggit_autosuggest.urls")),
     url(r"^userexport/", include("userexport.urls")),
 ]
 
