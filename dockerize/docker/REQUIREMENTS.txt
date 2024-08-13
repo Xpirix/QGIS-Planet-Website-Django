@@ -16,7 +16,6 @@ rpc4django~=0.6
 Pillow~=10.1
 django-taggit-templatetags
 # Updates for Django 4
-git+https://github.com/Xpirix/django-simplemenu.git@modernize
 django-bootstrap-pagination-forked~=1.7
 django-sortable-listview~=0.43
 sorl-thumbnail~=12.10

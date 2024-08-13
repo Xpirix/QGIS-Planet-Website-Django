@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     "django.contrib.staticfiles",
-    "django.contrib.flatpages",
     # full text search postgres
     "django.contrib.postgres",
     "django.contrib.humanize",
@@ -62,7 +61,6 @@ INSTALLED_APPS = [
     "taggit",
     "taggit_autosuggest",
     "taggit_templatetags",
-    "simplemenu",
     "tinymce",
     "rpc4django",
     "feedjack",

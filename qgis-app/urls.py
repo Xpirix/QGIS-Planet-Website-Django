@@ -1,10 +1,8 @@
-import simplemenu
 from django.conf import settings
 from django.urls import re_path as url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from django.contrib.flatpages.models import FlatPage
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 from django.views.static import serve
@@ -78,9 +76,3 @@ if settings.DEBUG:
     urlpatterns += [
         url(r"^__debug__/", include(debug_toolbar.urls)),
     ]
-
-simplemenu.register(
-    "/admin/",
-    FlatPage.objects.all(),
-    simplemenu.models.URLItem.objects.all(),
-)

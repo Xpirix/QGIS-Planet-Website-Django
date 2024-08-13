@@ -82,7 +82,6 @@ MIDDLEWARE = [
     # Needed by rpc4django
     "middleware.HttpAuthMiddleware",
     "django.contrib.auth.middleware.RemoteUserMiddleware",
-    "django.contrib.flatpages.middleware.FlatpageFallbackMiddleware",
     # Added by Tim for advanced loggin options
     "django.middleware.cache.FetchFromCacheMiddleware",
     "middleware.XForwardedForMiddleware",
@@ -123,8 +122,6 @@ INSTALLED_APPS = [
     "taggit",
     "taggit_autosuggest",
     "taggit_templatetags",
-    "django.contrib.flatpages",
-    "simplemenu",
     "tinymce",
     # Tim for django snippets app support
     #'cab', #the django snippets app itself
