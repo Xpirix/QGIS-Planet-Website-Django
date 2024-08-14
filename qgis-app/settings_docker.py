@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django.contrib.humanize",
     "django.contrib.syndication",
+    "rest_framework",
     "bootstrap_pagination",
     "sortable_listview",
     "lib",  # Container for small tags and functions
