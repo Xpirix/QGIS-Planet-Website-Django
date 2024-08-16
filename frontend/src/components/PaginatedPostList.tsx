@@ -43,7 +43,7 @@ const PaginatedPostList: React.FC = () => {
       <h1 className="title is-2">Posts</h1>
       {loading && <p className="notification is-info">Loading...</p>}
       {error && <p className="notification is-danger">{error}</p>}
-      <div className="box">
+      <div >
         <ul>
           {posts.map((post) => (
             <li key={post.id} className="media">
