@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Post, PostResponse } from "../types/post"; // Adjust the import path as necessary
+import Pagination from './Pagination';
 
 const PaginatedPostList: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -42,10 +43,11 @@ const PaginatedPostList: React.FC = () => {
     <div className="container">
       {loading && <p className="notification is-info">Loading...</p>}
       {error && <p className="notification is-danger">{error}</p>}
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={handlePageChange} />
       <div>
         <ul>
           {posts.map((post) => (
-            <li key={post.id} className="media">
+            <li key={post.id} className="media box">
               <div className="media-content">
                 <h2 className="title is-4">{post.title}</h2>
                 <div
@@ -58,47 +60,14 @@ const PaginatedPostList: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Read more
+                  View post
                 </a>
               </div>
             </li>
           ))}
         </ul>
       </div>
-      <nav
-        className="pagination is-centered"
-        role="navigation"
-        aria-label="pagination"
-      >
-        <button
-          className={`pagination-previous button ${
-            page === 1 ? "is-disabled" : ""
-          }`}
-          onClick={() => handlePageChange(page - 1)}
-          disabled={page === 1}
-        >
-          Previous
-        </button>
-        <button
-          className={`pagination-next button ${
-            page === totalPages ? "is-disabled" : ""
-          }`}
-          onClick={() => handlePageChange(page + 1)}
-          disabled={page === totalPages}
-        >
-          Next
-        </button>
-        <ul className="pagination-list">
-          <li>
-            <span
-              className="pagination-link"
-              aria-label="Page {page} of {totalPages}"
-            >
-              Page {page} of {totalPages}
-            </span>
-          </li>
-        </ul>
-      </nav>
+      <Pagination currentPage={page} totalPages={totalPages} onPageChange={handlePageChange} />
     </div>
   );
 };
