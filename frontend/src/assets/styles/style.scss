@@ -1,8 +1,55 @@
 @charset "utf-8";
-@import "bulma.scss";
+
+@import "variables";
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../webfonts/Montserrat.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Work Sans";
+    src: url("../webfonts/worksans.woff2") format("opentype");
+}
+
+@font-face {
+    font-family: "'Sevillana', cursive";
+    src: url("../webfonts/sevillana.woff2") format("opentype");
+}
+
+
+@font-face {
+  font-family: "Trueno";
+  src: url("../webfonts/TruenoLt.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Trueno";
+  src: url("../webfonts/TruenoRg.otf") format("opentype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Trueno";
+  src: url("../webfonts/TruenoSBd.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Trueno";
+  src: url("../webfonts/TruenoBd.otf") format("opentype");
+  font-weight: 600;
+}
+             
+@font-face {
+  font-family: "Trueno";
+  src: url("../webfonts/TruenoUltBlk.otf") format("opentype");
+  font-weight: 700;
+}
 
 body {
-  color: $text-primary1;
+  // color: $text-primary1;
   font-weight: 300;
 }
 
@@ -37,13 +84,13 @@ th {
   font-weight: 500;
 }
 
-p {
-  color: $text-primary2;
-}
+// p {
+//   color: $text-primary2;
+// }
 
-.input, .textarea, .select select {
-  color: $text-primary2;
-}
+// .input, .textarea, .select select {
+//   color: $text-primary2;
+// }
 
 
 @media screen and (max-width: 768px) {
@@ -209,6 +256,7 @@ a.is-active > span {
   top: 4rem;
   z-index: 100;
   transition: top 0.3s;
+  border-radius: 0;
 
   .navbar-item {
     color: white;

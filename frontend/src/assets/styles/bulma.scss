@@ -175,29 +175,31 @@ $navbar-item-img-max-height: 57px;;
 $notification-radius: $corner-radius;
 
 
-
-@import "./bulma/utilities/_all.sass";
-@import "./bulma/base/_all.sass";
-@import "./bulma/elements/_all.sass";
-@import "./bulma/components/_all.sass";
-@import "./bulma/grid/_all.sass";
+// @import "./bulma/utilities/_all.sass";
+// @import "./bulma/base/_all.sass";
+// @import "./bulma/elements/_all.sass";
+// @import "./bulma/components/_all.sass";
+// @import "./bulma/grid/_all.sass";
 // @import "./bulma/layout/_all.sass";
-@import "./bulma/helpers/_all.sass";
-@import "./bulma/form/_all.sass";
+// @import "./bulma/helpers/_all.sass";
+// @import "./bulma/form/_all.sass";
 
-// @import "footer.sass"
-// @import "bulma/layout/_all.sass"
+// // @import "footer.sass"
+// // @import "bulma/layout/_all.sass"
 
-/* Extensions */
-/* Steps - see https://github.com/aramvisser/bulma-steps */
-@import "./bulma-steps.sass";
-/* Pricing table - see https://github.com/Wikiki/bulma-pricingtable */
-@import "./bulma-pricing-table.sass";
-/* Badge - see https://github.com/CreativeBulma/bulma-badge/ */
-@import "./bulma-badge.sass";
-/* Ribbon - see https://github.com/Wikiki/bulma-ribbon */
-@import "./bulma-ribbon.sass";
-/* Second copy of ribbon as hack by Tim so we can have two ribbons on a block. */
-@import "./bulma-second-ribbon.sass";
-/* List - see https://github.com/bluefantail/bulma-list */
-@import "./bulma-list.sass";
+// /* Extensions */
+// /* Steps - see https://github.com/aramvisser/bulma-steps */
+// @import "./bulma-steps.sass";
+// /* Pricing table - see https://github.com/Wikiki/bulma-pricingtable */
+// @import "./bulma-pricing-table.sass";
+// /* Badge - see https://github.com/CreativeBulma/bulma-badge/ */
+// @import "./bulma-badge.sass";
+// /* Ribbon - see https://github.com/Wikiki/bulma-ribbon */
+// @import "./bulma-ribbon.sass";
+// /* Second copy of ribbon as hack by Tim so we can have two ribbons on a block. */
+// @import "./bulma-second-ribbon.sass";
+// /* List - see https://github.com/bluefantail/bulma-list */
+// @import "./bulma-list.sass";
+
+
+// @import "../../../node_modules/bulma/sass/themes";

@@ -49,3 +49,25 @@ $menuFontClass: is-size-6;
 
 // Radius for boxes
 $corner-radius: 0px;
+
+// @use "../../../node_modules/bulma/sass/utilities" with (
+//     $family-primary: '"Trueno", sans-serif'
+//   );
+
+@use "../../../node_modules/bulma/sass" with (
+  $family-primary: $text-font,
+  $family-secondary: $text-font,
+  // $primary: $primary,
+  $link: $link,
+  $black: $black, 
+	$white: $white, 
+	$grey-dark: $grey-dark, 
+	$grey-light: $grey-light, 
+	$grey-darker: $grey-darker, 
+	$danger: $danger, 
+	$info: $info, 
+	$success: $success, 
+	$warning: $warning,
+	// $text: $text-primary1,
+	// $text-invert: $primary1-invert
+);
