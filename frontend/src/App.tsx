@@ -2,6 +2,7 @@ import React from 'react';
 import './App.sass';
 import Header from './components/Header';
 import PaginatedPostList from './components/PaginatedPostList';
+import Footer from './components/Footer';
 import './assets/styles/style.scss';
 
 const App: React.FC = () => {
@@ -10,6 +11,7 @@ const App: React.FC = () => {
       <Header />
       {/* Other components and content */}
       <PaginatedPostList />
+      <Footer />
     </div>
   );
 };
