@@ -8,7 +8,6 @@ import {
   faSquareGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-// import '../assets/styles/bulma/layout/footer.sass';
 
 const Footer: React.FC = () => {
   const MAIN_WEBSITE_URL = "https://qgis.org";

@@ -1,0 +1,13 @@
+.is-highest {
+    z-index: 999 !important;
+}
+
+@media screen and (min-width: 1023px) {
+    .navbar-start .navbar-item, .navbar-link {
+        color: white !important;
+    }
+}
+
+.navbar-burger {
+    margin-inline-start: unset !important;
+}

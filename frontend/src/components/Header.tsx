@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from 'react';
 import ThemeSwitcher from "./ThemeSwitcher";
+import '../assets/styles/components/Header.scss'
 
 
 const Header: React.FC = () => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const handleBurgerClick = () => {
+    setIsActive(!isActive);
+  };
+
   return (
     <section style={{ height: 112 + "px" }}>
       <qg-top-nav
@@ -22,22 +29,23 @@ const Header: React.FC = () => {
             <div className="navbar-brand">
               <a
                 role="button"
-                className="navbar-burger"
+                className={`navbar-burger burger ${isActive ? 'is-active' : ''}`}
                 aria-label="menu"
+                aria-expanded="false"
                 data-target="menu"
+                onClick={handleBurgerClick}
               >
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
               </a>
-            </div>
-
-            <div id="menu" className={`navbar-menu is-active`}>
-              <div className="navbar-start">
-                <div className="navbar-item has-text-weight-semibold is-size-10">
+                <div className="navbar-item has-text-weight-semibold is-size-10 has-text-white">
                   <span>QGIS Planet</span>
                 </div>
-              </div>
+            </div>
+
+            <div id="menu" className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
               <div className="navbar-end">
                 <ThemeSwitcher />
               </div>

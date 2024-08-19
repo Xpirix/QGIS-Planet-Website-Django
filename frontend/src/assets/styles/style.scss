@@ -84,14 +84,9 @@ th {
   font-weight: 500;
 }
 
-// p {
-//   color: $text-primary2;
-// }
-
-// .input, .textarea, .select select {
-//   color: $text-primary2;
-// }
-
+a {
+  color: $link;
+}
 
 @media screen and (max-width: 768px) {
   .hero-body {
@@ -103,7 +98,7 @@ th {
   background-color: unset;
 }
 .navbar-brand, .navbar-tabs {
-  min-height:unset;
+  // min-height:unset;
   a:hover {
     color: $primary1-invert;
   }
@@ -194,9 +189,9 @@ th {
 }
 
 @media screen and (max-width: 1023px) {
-  .navbar-menu {
-    background-color: #1D2027;
-  }
+  // .navbar-menu {
+    // background-color: #1D2027;
+  // }
   .navbar-menu.is-active {
       display: block;
       position: fixed;
@@ -258,19 +253,19 @@ a.is-active > span {
   transition: top 0.3s;
   border-radius: 0;
 
-  .navbar-item {
-    color: white;
-    border-radius: 5px;
-  }
+  // .navbar-item {
+  //   color: white;
+  //   // border-radius: 5px;
+  // }
 
-  a.navbar-item.is-active, .navbar-link.is-active {
-    color: white;
-    background-color: unset;
-    &:hover {
-      color: #0a0a0a;
-      background-color: #fafafa;
-    }
-  }
+  // a.navbar-item.is-active, .navbar-link.is-active {
+  //   color: white;
+  //   background-color: unset;
+  //   &:hover {
+  //     color: #0a0a0a;
+  //     background-color: #fafafa;
+  //   }
+  // }
 }
 
 @media screen and (min-width: 1024px) {

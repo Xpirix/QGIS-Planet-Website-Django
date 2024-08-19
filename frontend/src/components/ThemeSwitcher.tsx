@@ -55,7 +55,7 @@ const ThemeSwitcher: React.FC = () => {
       }`}
     >
       <a
-        className={`navbar-link ${theme === "light" ? "has-text-white" : ""}`}
+        className={`navbar-link`}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <FontAwesomeIcon
