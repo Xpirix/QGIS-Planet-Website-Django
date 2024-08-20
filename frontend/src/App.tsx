@@ -5,6 +5,7 @@ import PaginatedPostList from "./components/PaginatedPostList";
 import Footer from "./components/Footer";
 import "./assets/styles/style.scss";
 import FeedSidebar from "./components/FeedSidebar";
+import TagSearchBar from "./components/TagSearch";
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <FeedSidebar />
         </div>
         <div className="column is-four-fifths">
+          <TagSearchBar />
           <PaginatedPostList />
         </div>
       </div>

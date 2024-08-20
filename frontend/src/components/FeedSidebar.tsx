@@ -13,7 +13,7 @@ const FeedSidebar: React.FC = () => {
   useEffect(() => {
     const fetchFeeds = async () => {
       try {
-        const response = await axios.get("http://localhost:62202/api/feed");
+        const response = await axios.get("http://localhost:62202/api/feeds");
         setFeeds(response.data); // Adjust to your API structure if necessary
         setLoading(false);
       } catch (err) {
