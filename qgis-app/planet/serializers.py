@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from feedjack.models import Post
+from feedjack.models import Post, Feed
 
 class PostSerializer(serializers.ModelSerializer):
     tags = serializers.StringRelatedField(many=True)
@@ -13,4 +13,12 @@ class PostSerializer(serializers.ModelSerializer):
             'link',
             'tags',
             'title'
+        ]
+
+class FeedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feed
+        fields = [
+            'id',
+            'name'
         ]
