@@ -1,17 +1,12 @@
 // src/types.ts
 
 export interface Post {
-    id: number;
     title: string;
     link: string;
     content: string;
     date_modified: string;
-    guid: string;
     author: string;
-    author_email: string;
-    comments: string;
     date_created: string;
-    feed: number;
     tags: string[];
 }
 
