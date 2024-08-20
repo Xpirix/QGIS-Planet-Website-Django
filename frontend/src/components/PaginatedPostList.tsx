@@ -57,11 +57,11 @@ const PaginatedPostList: React.FC = () => {
     <div className="container">
       {loading && <p className="notification is-info">Loading...</p>}
       {error && <p className="notification is-danger">{error}</p>}
-      <Pagination
+      {/* <Pagination
         currentPage={page}
         totalPages={totalPages}
         onPageChange={handlePageChange}
-      />
+      /> */}
       <div>
         <ul>
           {posts.map((post) => (
