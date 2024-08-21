@@ -145,7 +145,7 @@ const PaginatedPostList: React.FC = () => {
                     <span className="has-text-weight-semibold">
                       {post.author}
                     </span>{'\u00A0'}
-                    at {formatDate(post.date_modified)}
+                    on {formatDate(post.date_modified)}
                   </div>
                 </div>
               </nav>
