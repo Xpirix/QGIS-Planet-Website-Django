@@ -5,23 +5,25 @@ import React from "react";
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  tags: string[];
+  onPageChange: (page: number, tags: string[]) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPages,
+  tags,
   onPageChange,
 }) => {
   const handlePrevious = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
+      onPageChange(currentPage - 1, tags);
     }
   };
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
+      onPageChange(currentPage + 1, tags);
     }
   };
 

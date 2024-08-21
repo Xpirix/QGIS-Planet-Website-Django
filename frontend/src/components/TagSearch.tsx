@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../assets/styles/components/TagSearch.scss'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../assets/styles/components/TagSearch.scss";
 
 interface Tag {
   name: string;
 }
 
-const TagSearchBar: React.FC = () => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+interface TagSearchBarProps {
+  onTagSelect: (selectedTag: string) => void; // Prop for sending the selected tag to parent
+}
+
+const TagSearchBar: React.FC<TagSearchBarProps> = ({ onTagSelect }) => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [tags, setTags] = useState<Tag[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -18,18 +22,20 @@ const TagSearchBar: React.FC = () => {
       if (searchQuery) {
         setLoading(true);
         try {
-          const response = await axios.get(`http://localhost:62202/api/tags?q=${searchQuery}`);
+          const response = await axios.get(
+            `http://localhost:62202/api/tags?q=${searchQuery}`
+          );
           setTags(response.data || []);
           setLoading(false);
-          setShowSuggestions(true);  // Show suggestions on valid search query
+          setShowSuggestions(true);
         } catch (err) {
-          setError('Error fetching tags');
+          setError("Error fetching tags");
           setLoading(false);
-          setShowSuggestions(false); // Hide suggestions on error
+          setShowSuggestions(false);
         }
       } else {
         setTags([]);
-        setShowSuggestions(false);   // Hide suggestions if search query is empty
+        setShowSuggestions(false);
       }
     };
 
@@ -42,7 +48,8 @@ const TagSearchBar: React.FC = () => {
 
   const handleSelectTag = (tagName: string) => {
     setSearchQuery(tagName);
-    setShowSuggestions(false);  // Hide suggestions after selecting a tag
+    setShowSuggestions(false); // Hide suggestions after selecting a tag
+    onTagSelect(tagName); // Notify parent of the selected tag
   };
 
   return (
@@ -53,12 +60,11 @@ const TagSearchBar: React.FC = () => {
         placeholder="Search by tag"
         value={searchQuery}
         onChange={handleSearch}
-        onFocus={() => setShowSuggestions(true)}  // Show suggestions when input is focused
-        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}  // Delay hiding to allow clicks
-        style={{ marginBottom: '1rem' }}
+        onFocus={() => setShowSuggestions(true)}
+        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+        style={{ marginBottom: "1rem" }}
       />
 
-      {/* Autocomplete Dropdown */}
       {showSuggestions && tags.length > 0 && (
         <div className="autocomplete-dropdown box p-0">
           {loading && <p>Loading...</p>}
@@ -69,7 +75,7 @@ const TagSearchBar: React.FC = () => {
                 key={index}
                 className="dropdown-item"
                 onClick={() => handleSelectTag(tag.name)}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 {tag.name}
               </li>
@@ -78,7 +84,6 @@ const TagSearchBar: React.FC = () => {
         </div>
       )}
 
-      {/* If no results */}
       {showSuggestions && searchQuery && tags.length === 0 && !loading && (
         <div className="autocomplete-dropdown box">
           <p>No results found</p>

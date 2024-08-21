@@ -11,8 +11,19 @@ class PostPagination(PageNumberPagination):
 
 class MainView(ListAPIView):
     serializer_class = PostSerializer
-    pagination_class = PostPagination
-    queryset = Post.objects.all()
+    pagination_class = PostPagination    
+
+    def get_queryset(self):
+        queryset = Post.objects.all()
+
+        # Get the 'tags' parameter from the request
+        tags = self.request.query_params.get('tags', None)
+
+        if tags:
+            tag_list = tags.split(',')  # Split the tags by commas
+            queryset = queryset.filter(tags__name__in=tag_list).distinct()  # Filter posts with these tags
+
+        return queryset
 
 class FeedListView(ListAPIView):
     serializer_class = FeedSerializer
