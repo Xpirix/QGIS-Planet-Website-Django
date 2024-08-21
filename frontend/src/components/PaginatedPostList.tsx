@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Post, PostResponse } from "../types/post"; // Adjust the import path as necessary
 import Pagination from "./Pagination";
+import { useLocation, useNavigate } from "react-router-dom"; // useNavigate instead of useHistory
 
 const PaginatedPostList: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -10,6 +11,26 @@ const PaginatedPostList: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const location = useLocation();
+  const navigate = useNavigate(); // Use useNavigate instead of useHistory
+
+  // Function to get the current query parameter
+  const getQueryParam = (param: string): string | null => {
+    const params = new URLSearchParams(location.search);
+    return params.get(param);
+  };
+
+  // Set page number from the URL query parameters
+  useEffect(() => {
+    const queryPage = getQueryParam("page");
+    if (queryPage) {
+      const pageNumber = parseInt(queryPage);
+      if (!isNaN(pageNumber)) {
+        setPage(pageNumber);
+      }
+    }
+  }, [location.search]);
 
   const fetchPosts = async (page: number) => {
     setLoading(true);
@@ -29,27 +50,27 @@ const PaginatedPostList: React.FC = () => {
     }
   };
 
+  // Fetch posts when the page changes
   useEffect(() => {
     fetchPosts(page);
   }, [page]);
 
+  // Handle page change and update the URL query parameter
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
+      navigate(`?page=${newPage}`); // Use navigate instead of history.push
     }
   };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleString(undefined, {
-      // It will automatically use the user’s locale settings
       year: "numeric",
       month: "long",
       day: "numeric",
       hour: "numeric",
       minute: "numeric",
       timeZoneName: "short",
-      // second: "numeric",
-      hour12: false, // For 12-hour format
     });
   };
 
@@ -57,11 +78,6 @@ const PaginatedPostList: React.FC = () => {
     <div className="container">
       {loading && <p className="notification is-info">Loading...</p>}
       {error && <p className="notification is-danger">{error}</p>}
-      {/* <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      /> */}
       <div>
         <ul>
           {posts.map((post) => (
@@ -74,7 +90,9 @@ const PaginatedPostList: React.FC = () => {
                 />
                 <div>
                   {post.tags.map((tag) => (
-                    <a className="tag is-warning mr-2">{tag}</a>
+                    <a className="tag is-warning mr-2">
+                      {tag}
+                    </a>
                   ))}
                 </div>
                 <nav className="level mt-3">
@@ -91,11 +109,11 @@ const PaginatedPostList: React.FC = () => {
                     </div>
                   </div>
                   <div className="level-right">
-                    <div className="level-ite is-size-7 is-italic">
-                      By{" "}
+                    <div className="level-item is-size-7 is-italic">
+                      By{'\u00A0'}
                       <span className="has-text-weight-semibold">
                         {post.author}
-                      </span>{" "}
+                      </span>{'\u00A0'}
                       at {formatDate(post.date_modified)}
                     </div>
                   </div>

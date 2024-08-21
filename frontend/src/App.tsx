@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import "./assets/styles/style.scss";
 import FeedSidebar from "./components/FeedSidebar";
 import TagSearchBar from "./components/TagSearch";
+import { Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
   return (
@@ -19,7 +20,11 @@ const App: React.FC = () => {
         </div>
         <div className="column is-four-fifths">
           <TagSearchBar />
-          <PaginatedPostList />
+          <Routes>
+            <Route path="/" element={<PaginatedPostList />}></Route>
+            
+          </Routes>
+          
         </div>
       </div>
       </section>
