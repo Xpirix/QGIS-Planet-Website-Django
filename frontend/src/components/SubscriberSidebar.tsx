@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Feed } from "../types/feed";
+import { Subscriber } from "../types/feed";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes, faBlog } from "@fortawesome/free-solid-svg-icons";
 
-const FeedSidebar: React.FC = () => {
-  const [feeds, setFeeds] = useState<Feed[]>([]);
+interface SubscriberSidebarProps {
+  subscriberId: number
+}
+
+const SubscriberSidebar: React.FC<SubscriberSidebarProps> = ({subscriberId}) => {
+  const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isSidebarVisible, setIsSidebarVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchFeeds = async () => {
+    const fetchSubscribers = async () => {
       try {
-        const response = await axios.get("http://localhost:62202/api/feeds");
-        setFeeds(response.data); // Adjust to your API structure if necessary
+        const response = await axios.get("http://localhost:62202/api/subscribers");
+        setSubscribers(response.data); // Adjust to your API structure if necessary
         setLoading(false);
       } catch (err) {
-        setError("Error fetching feeds");
+        setError("Error fetching blog list");
         setLoading(false);
       }
     };
 
-    fetchFeeds();
+    fetchSubscribers();
   }, []);
   // Toggle sidebar visibility on mobile
   const toggleSidebar = () => {
@@ -51,12 +55,17 @@ const FeedSidebar: React.FC = () => {
         <ul className="menu-list">
           {loading && <li>Loading...</li>}
           {error && <li>{error}</li>}
+          <li>
+            <a href="/" className={`is-size-7 ${subscriberId == -1 ? "is-active" : ""}`}>
+            All
+            </a>
+          </li>
           {!loading &&
             !error &&
-            feeds.map((feed) => (
-              <li key={feed.id}>
-                <a href="#" className="is-size-7">
-                  {feed.name}
+            subscribers.map((subscriber) => (
+              <li>
+                <a href={`/blog/${subscriber.id}`} className={`is-size-7 ${subscriber.id == subscriberId ? "is-active" : ""}`}>
+                  {subscriber.name}
                 </a>
               </li>
             ))}
@@ -66,4 +75,4 @@ const FeedSidebar: React.FC = () => {
   );
 };
 
-export default FeedSidebar;
+export default SubscriberSidebar;

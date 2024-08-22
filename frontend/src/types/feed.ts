@@ -1,4 +1,4 @@
-export interface Feed {
+export interface Subscriber {
     id: number;
     name: string;
 }

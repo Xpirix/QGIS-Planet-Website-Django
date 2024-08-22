@@ -2,20 +2,20 @@ import React, { useState } from 'react';
 import "./App.sass";
 import Header from "./components/Header";
 import PaginatedPostList from "./components/PaginatedPostList";
+import PostBySubscriber from "./components/PostBySubscriber";
 import Footer from "./components/Footer";
 import "./assets/styles/style.scss";
-import FeedSidebar from "./components/FeedSidebar";
+import SubscriberSidebar from "./components/SubscriberSidebar";
 
 import { Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
-  // const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [subscriberId, setSubscriberId] = useState<number>(-1);
 
-  // const handleTagSelect = (newTag: string) => {
-  //   if (!selectedTags.includes(newTag)) {
-  //     setSelectedTags((prevTags) => [...prevTags, newTag]);
-  //   }
-  // };
+  // Function to handle value received from child component
+  const handleSubscriberId = (value: number) => {
+    setSubscriberId(value);
+  };
   return (
     <div className="App">
       <Header />
@@ -23,13 +23,13 @@ const App: React.FC = () => {
       <section className="section">
       <div className="columns">
         <div className="column">
-          <FeedSidebar />
+          <SubscriberSidebar subscriberId={subscriberId} />
         </div>
         <div className="column is-four-fifths">
           
           <Routes>
             <Route path="/" element={<PaginatedPostList />}></Route>
-            
+            <Route path="/blog/:subscriberId/" element={<PostBySubscriber handleSubscriberId={handleSubscriberId}/>}></Route>
           </Routes>
           
         </div>

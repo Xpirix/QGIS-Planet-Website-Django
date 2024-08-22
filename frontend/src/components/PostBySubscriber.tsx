@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Post, PostResponse } from "../types/post"; // Adjust the import path as necessary
 import Pagination from "./Pagination";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import queryString from "query-string";
 import TagSearchBar from "../components/TagSearch";
+
+interface PaginatedPostListProps {
+  handleSubscriberId: (value: number) => void; // Define the type of the prop
+}
 
 // Utility function to format dates
 const formatDate = (dateString: string) => {
@@ -24,7 +28,10 @@ const updateURL = (navigate: Function, page: number, tags: string[]) => {
   navigate(`?page=${page}${tagsParam ? `&${tagsParam}` : ""}`);
 };
 
-const PaginatedPostList: React.FC = () => {
+const PaginatedPostList: React.FC<PaginatedPostListProps> = ({
+  handleSubscriberId,
+}) => {
+  const { subscriberId } = useParams<{ subscriberId: string }>(); // Get subscriber_id from URL params
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState<number>(1);
   const [pageSize] = useState<number>(10); // Constant value, no need for state
@@ -47,9 +54,12 @@ const PaginatedPostList: React.FC = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<PostResponse>("http://localhost:62202/api/posts", {
-        params: { page, page_size: pageSize, tags: selectedTags.join(",") },
-      });
+      const response = await axios.get<PostResponse>(
+        `http://localhost:62202/api/posts/user/${subscriberId}`,
+        {
+          params: { page, page_size: pageSize, tags: selectedTags.join(",") },
+        }
+      );
       setPosts(response.data.results);
       setTotalPages(Math.ceil(response.data.count / pageSize));
     } catch {
@@ -58,8 +68,17 @@ const PaginatedPostList: React.FC = () => {
       setLoading(false);
     }
   };
-
+  const setSubscriberId = () => {
+    const numericSubscriberId = Number(subscriberId);
+  
+    // Check if it's a valid number
+    if (!isNaN(numericSubscriberId)) {
+      // If it's a valid number, send it to the parent
+      handleSubscriberId(numericSubscriberId);
+    }
+  };
   useEffect(() => {
+    setSubscriberId();
     fetchPosts();
   }, [page, selectedTags]);
 
@@ -141,10 +160,11 @@ const PaginatedPostList: React.FC = () => {
                 </div>
                 <div className="level-right">
                   <div className="level-item is-size-7 is-italic">
-                    By{'\u00A0'}
+                    By{"\u00A0"}
                     <span className="has-text-weight-semibold">
                       {post.author}
-                    </span>{'\u00A0'}
+                    </span>
+                    {"\u00A0"}
                     on {formatDate(post.date_modified)}
                   </div>
                 </div>
