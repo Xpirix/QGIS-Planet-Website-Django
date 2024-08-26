@@ -1,0 +1,87 @@
+// Brand colours:
+$primary1: #589632;
+$primary2: #55828b;
+$primary3: #395c6b;
+$primary4: #eee766;
+$primary5: #93b023;
+$primary6: #ee7913;
+$primary1-invert: #fff;
+$primary2-invert: #eeeeee;
+$primary3-invert: #eeeeee;
+$primary4-invert: #363636;
+$primary5-invert: #eeeeee;
+$primary6-invert: #fff;
+$links: #3a9800;
+// TODO update these to gradient colours like above
+$complementary1: #93b023;
+$complementary2: #ee7913;
+$complementary3: #eee766;
+$complementary4: #93b023;
+$complementary5: #a7cecb;
+$complementary6: #589732;
+$complementary7: #93b022;
+$complementary8: #385c6b;
+$light1: #fbfbfb;
+$light2: #eeeeee;
+$light3: #e7e7e7;
+$dark1: #808080;
+$dark2: #000;
+$text-primary1: #002033;
+$text-primary2: #4d6370;
+$base: #002033;
+// Bulma specific colours based on our branding
+$black: #000;
+$white: #ffffff;
+$grey-dark: #444444;
+$grey-darker: #363636;
+$grey-light: #d4d4d4;
+$primary: #a7cecb;
+$danger: #ee7913;
+$info: #93b023;
+$success: #589632;
+$warning: #eee766;
+$link: #3a9800;
+// Brand fonts to override bulma font families
+$heading-font: "Trueno", sans-serif;
+$text-font: "Trueno", sans-serif;
+$fancy-font: "Sevillana", cursive;
+$menuFontClass: is-size-6;
+
+// Radius for boxes
+$corner-radius: 0px;
+
+$footer-tablet-breakpoint: 1450px !default;
+$footer-background-color: #002033 !default;
+$footer-padding: 4rem 0rem 28px 0rem !default;
+$footer-padding-mobile: 4rem 2rem 28px !default;
+
+@use "bulma/sass/utilities" with (
+  $family-primary: $text-font,
+  $family-secondary: $text-font,
+  $link: $link,
+  $black: $black,
+  $white: $white,
+  $grey-dark: $grey-dark,
+  $grey-light: $grey-light,
+  $grey-darker: $grey-darker,
+  $danger: $danger,
+  $info: $info,
+  $success: $success,
+  $warning: $warning
+);
+
+@use "bulma/sass/layout/footer" with (
+	$footer-background-color: $footer-background-color,
+	$footer-padding: $footer-padding
+);
+
+@forward "bulma/sass/base";
+@forward "bulma/sass/elements";
+@forward "bulma/sass/components";
+@forward "bulma/sass/grid";
+@forward "bulma/sass/layout";
+@forward "bulma/sass/helpers";
+@forward "bulma/sass/form";
+
+// Import the themes so that all CSS variables have a value
+@forward "bulma/sass/themes";

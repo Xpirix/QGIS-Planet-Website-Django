@@ -34,6 +34,7 @@ importlib_metadata<5
 
 requests~=2.31
 
+djangorestframework~=3.15
 markdown~=3.5
 
 django-preferences==1.0.0
@@ -42,3 +43,5 @@ uwsgi~=2.0
 freezegun~=1.4
 
 sentry-sdk~=2.2
+
+beautifulsoup4~=4.12

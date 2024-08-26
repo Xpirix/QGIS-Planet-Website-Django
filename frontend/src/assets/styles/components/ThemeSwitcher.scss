@@ -1,0 +1,7 @@
+
+.theme-dropdown {
+    border-radius: 10px;
+    a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover {
+        background: none;
+    }
+}

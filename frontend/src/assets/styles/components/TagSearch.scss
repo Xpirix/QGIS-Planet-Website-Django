@@ -1,0 +1,19 @@
+.autocomplete {
+    position: relative;
+  }
+  
+  .autocomplete-dropdown {
+    position: absolute;
+    top: 75%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .autocomplete-dropdown .dropdown-item {
+    padding: 10px;
+  }
+
+  
