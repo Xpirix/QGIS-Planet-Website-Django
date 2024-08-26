@@ -313,7 +313,7 @@ const Footer: React.FC = () => {
         </div>
         <div className="columns is-desktop issue-report-link is-justify-content-center">
           <a
-            href="https://github.com/qgis/qgis-feed/issues"
+            href="https://github.com/qgis/QGIS-Django/issues"
             className="column is-narrow p-0 is-size-6"
           >
             Problems with this website? Report an issue here 🐙
