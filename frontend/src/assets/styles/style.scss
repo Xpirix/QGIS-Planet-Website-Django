@@ -88,6 +88,13 @@ a {
   color: $link;
 }
 
+h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   .hero-body {
     height: unset;

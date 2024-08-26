@@ -6,6 +6,7 @@ import PostBySubscriber from "./components/PostBySubscriber";
 import Footer from "./components/Footer";
 import "./assets/styles/style.scss";
 import SubscriberSidebar from "./components/SubscriberSidebar";
+import SustainingMembers from "./components/SustainingMembers";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -35,6 +36,7 @@ const App: React.FC = () => {
         </div>
       </div>
       </section>
+      <SustainingMembers />
       <Footer />
     </div>
   );
