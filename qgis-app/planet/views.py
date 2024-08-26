@@ -1,9 +1,14 @@
+import requests
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
-from .serializers import PostSerializer, FeedSerializer, SubscriberSerializer
+from .serializers import PostSerializer, FeedSerializer, SubscriberSerializer, MembershipSectionSerializer
 from django.shortcuts import get_object_or_404
 from feedjack.models import Post, Feed, Tag, Subscriber
 from django.db.models import Q
+from bs4 import BeautifulSoup
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 class PostPagination(PageNumberPagination):
     page_size = 10  # Number of posts per page
@@ -65,3 +70,19 @@ class TagListView(ListAPIView):
         if query:
             queryset = queryset.filter(Q(name__icontains=query))
         return queryset
+
+class ScrapeMembershipSectionView(APIView):
+    def get(self, request):
+        url = 'https://qgis.org'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            section = soup.select_one('section.section')
+
+            if section:
+                serializer = MembershipSectionSerializer({'content': str(section)})
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response({'error': 'Section not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({'error': 'Failed to fetch page'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -37,3 +37,6 @@ class TagSerializer(serializers.ModelSerializer):
         fields = [
             'tag'
         ]
+
+class MembershipSectionSerializer(serializers.Serializer):
+    content = serializers.CharField()
